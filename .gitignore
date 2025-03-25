@@ -12,8 +12,6 @@ build/
 develop-eggs/
 dist/
 
-
-
 downloads/
 eggs/
 .eggs/
@@ -139,3 +137,6 @@ pyvenv.cfg
 ../.idea/
 //.vscode
 /migrations
+
+# Docker database data
+docker/db/data/
