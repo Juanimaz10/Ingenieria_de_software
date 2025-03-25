@@ -37,9 +37,6 @@ class Receipt_Footer {
 
 }
 
-Receipt_Header --> Receipt
-Receipt_Content --> Receipt
-Receipt_Footer --> Receipt
 
 class Category {
     - name: str
@@ -60,3 +57,6 @@ Stock --> Article
 Category --> Article
 Brand --> Article
 Receipt_Type --> Receipt
+Receipt_Header --- Receipt
+Receipt_Content --- Receipt
+Receipt_Footer --- Receipt
