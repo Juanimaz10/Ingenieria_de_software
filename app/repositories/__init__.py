@@ -1,1 +1,3 @@
 from.article_repository import ArticleRepository
+from .base_repository import CreateAbstractRepository, ReadAbstractRepository, UpdateAbstractRepository, DeleteAbstractRepository
+from .brand_repository import BrandRepository
