@@ -1,0 +1,1 @@
+from .notification_resource import NotificationResource
