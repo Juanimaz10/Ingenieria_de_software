@@ -18,3 +18,4 @@ services:
 
 networks:
     mired:
+        external: true

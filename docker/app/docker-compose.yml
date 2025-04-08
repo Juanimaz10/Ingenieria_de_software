@@ -1,0 +1,21 @@
+services:
+    stock:
+        container_name: stock-app
+        image: stock:v1.0.1
+
+        networks:
+          - mired
+        ports:
+          - "5000:5000"
+        environment:
+          - SQLALCHEMY_TRACK_MODIFICATIONS=${SQLALCHEMY_TRACK_MODIFICATIONS}
+          - SQLALCHEMY_RECORD_QUERIES=${SQLALCHEMY_RECORD_QUERIES}
+          - TEST_DATABASE_URI=${TEST_DATABASE_URI}
+          - DEV_DATABASE_URI=${DEV_DATABASE_URI}
+          - PROD_DATABASE_URI=${PROD_DATABASE_URI}
+          - FLASK_CONTEXT=${FLASK_CONTEXT}
+
+
+networks:
+    mired:
+        external: true
