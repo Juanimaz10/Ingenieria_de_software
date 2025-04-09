@@ -1,0 +1,17 @@
+@startuml brand
+actor User
+boundary View
+controller Controller
+entity Model
+database Database
+
+User -> View : Enters brand data
+View -> Controller : POST /create_brand
+Controller -> Model : brand = Brand
+Controller -> Database : db.session.add(brand)
+Controller -> Database : db.session.commit()
+Database --> Controller : Confirmation
+Controller -> View : Success response
+View -> User : Show confirmation message
+
+@enduml
