@@ -1,0 +1,27 @@
+@startuml
+actor User
+boundary "Inventory UI" as UI
+control "Stock Controller" as Controller
+entity "Stock Model" as Model
+database "Inventory Database" as DB
+
+== Request Stock Information ==
+User -> UI: Request stock information
+UI -> Controller: GET /stock_info
+Controller -> Model: Fetch stock data
+Model -> DB: Query stock table
+DB --> Model: Return stock data
+Model --> Controller: Stock data
+Controller --> UI: Display stock information
+UI --> User: Show stock details
+
+== Update Stock Quantity ==
+User -> UI: Update stock quantity
+UI -> Controller: POST /update_stock
+Controller -> Model: Update stock record
+Model -> DB: Update stock table
+DB --> Model: Confirm update
+Model --> Controller: Update success
+Controller --> UI: Confirm update
+UI --> User: Stock updated
+@enduml
