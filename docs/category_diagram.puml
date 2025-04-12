@@ -1,0 +1,17 @@
+@startuml
+actor User
+boundary View
+control CategoryController
+entity CategoryModel
+database Database
+
+User -> View : Enters category data
+View -> CategoryController: POST /create_category
+CategoryController -> CategoryModel: category = Category
+CategoryController -> Database: db.session.add(category)
+CategoryController -> Database: db.session.commit()
+Database --> CategoryController: Confirmation
+CategoryController -> View: Success response
+View -> User: Show confirmation message
+
+@enduml
