@@ -1,7 +1,7 @@
-@startuml brand
+@startuml
 actor User
 boundary View
-controller Controller
+control Controller
 entity Model
 database Database
 
