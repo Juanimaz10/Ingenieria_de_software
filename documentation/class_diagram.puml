@@ -1,0 +1,76 @@
+@startuml ClassDiagram
+
+class Article {
+    - name: str
+    - description: str 
+    - category: Category
+    - brand: Brand
+    - minimun_stock: float
+    - code_ean13: str
+}
+
+class Category {
+    - name: str
+    - description: str
+
+
+
+
+class Brand {
+    - name: str
+    - description: str
+}
+
+class Stock {
+    - items: ReceiptItem
+}
+
+class ReceiptType {
+    - name: str
+    - description: str
+    - type: int // 1: In, 2: Transfer, -1 Out
+}
+
+class ReceiptHeader {
+    - submission_date: datetime
+    - type: ReceiptType
+}
+
+class ReceiptItem {
+    - article: Article
+    - quantity: float
+    - batch: Batch
+}
+
+class ReceiptFooter {
+    - total: float
+}
+
+class Receipt {
+    - header: ReceiptHeader
+    - items: ReceiptItem
+    - footer: ReceiptFooter
+}
+
+class Notification {
+    - message: str
+    - type: int // 1: Info, 2: Warning, 3: Error
+    - date: datetime
+}
+
+class Batch {
+    - code: str
+    - expiration_date: datetime
+}
+
+Stock --> Article
+Brand --> Article
+Category --> Article
+Batch --> Article
+
+ReceiptType --> Receipt 
+ReceiptHeader --- Receipt
+ReceiptItem --- Receipt
+ReceiptFooter --- Receipt
+
+@enduml
