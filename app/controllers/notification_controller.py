@@ -6,7 +6,7 @@ from app.mapping import NotificationSchema
 notifications_bp = Blueprint('notifications', __name__)
 notification_schema = NotificationSchema()
 
-class NotificationResource:
+class NotificationController:
     def __init__(self, service=None):
         self.service = service or NotificationService()
     
@@ -48,7 +48,7 @@ class NotificationResource:
             return self.handle_exception(e, "Error al eliminar notificación")
 
 # Instancia del controlador
-notification_controller = NotificationResource()
+notification_controller = NotificationController()
 
 # Definición de rutas
 notifications_bp.route('/get-all', methods=['GET'])(notification_controller.find_all)
