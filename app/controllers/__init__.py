@@ -1,0 +1,1 @@
+from .article_controller import article_bp

@@ -7,3 +7,4 @@ psycopg2==2.9.10
 psycopg[binary]
 marshmallow==3.26.1
 flask-marshmallow==1.3.0
+marshmallow-sqlalchemy==1.1.0

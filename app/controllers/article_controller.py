@@ -19,7 +19,6 @@ def get(id:int):
     return message_map.dump(message_finish), 200
 
 
-
 @article_bp.route('/articles', methods=['GET'])
 def get_all():
     articles = ArticleService.find_all()

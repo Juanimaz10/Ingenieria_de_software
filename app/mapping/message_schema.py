@@ -1,4 +1,4 @@
-from marshmallow import Schema,fields, validate, post_load
+from marshmallow import Schema,fields
 
 
 class MessageMap(Schema):
