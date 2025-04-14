@@ -6,22 +6,22 @@ entity "Stock Model" as Model
 database "Inventory Database" as DB
 
 == Request Stock Information ==
-User -> UI: Request stock information
-UI -> Controller: GET /stock_info
-Controller -> Model: Fetch stock data
-Model -> DB: Query stock table
-DB --> Model: Return stock data
-Model --> Controller: Stock data
-Controller --> UI: Display stock information
-UI --> User: Show stock details
+User -> UI: Request stock information (type: receipt)
+UI -> Controller: GET /stock_info (type: receipt)
+Controller -> Model: Fetch stock data (type: receipt)
+Model -> DB: Query stock table (type: receipt)
+DB --> Model: Return stock data (type: receipt)
+Model --> Controller: Stock data (type: receipt)
+Controller --> UI: Display stock information (type: receipt)
+UI --> User: Show stock details (type: receipt)
 
 == Update Stock Quantity ==
-User -> UI: Update stock quantity
-UI -> Controller: POST /update_stock
-Controller -> Model: Update stock record
-Model -> DB: Update stock table
-DB --> Model: Confirm update
-Model --> Controller: Update success
-Controller --> UI: Confirm update
-UI --> User: Stock updated
+User -> UI: Update stock quantity (type: receipt)
+UI -> Controller: POST /update_stock (type: receipt)
+Controller -> Model: Update stock record (type: receipt)
+Model -> DB: Update stock table (type: receipt)
+DB --> Model: Confirm update (type: receipt)
+Model --> Controller: Update success (type:receipt)
+Controller --> UI: Confirm update (type:receipt)
+UI --> User: Stock updated (type: receipt)
 @enduml
