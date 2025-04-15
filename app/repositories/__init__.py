@@ -1,4 +1,5 @@
-from.article_repository import ArticleRepository
+from .article_repository import ArticleRepository
 from .base_repository import CreateAbstractRepository, ReadAbstractRepository, UpdateAbstractRepository, DeleteAbstractRepository
 from .brand_repository import BrandRepository
 from .notification_repository import NotificationRepository
+from .receipt_repository import ReceiptRepository

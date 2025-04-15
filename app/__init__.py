@@ -17,7 +17,7 @@ def create_app() -> Flask:
     app.config.from_object(f)
 
     db.init_app(app)
-    migrate.init_app(app)
+    migrate.init_app(app, db)
     marshmallow.init_app(app)
     
     @app.shell_context_processor    
