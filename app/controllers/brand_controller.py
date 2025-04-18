@@ -20,7 +20,7 @@ def get(id: int):
     return result, status_code
 
 
-@brand_bp.route('/brand', methods=['GET'])
+@brand_bp.route('/brands', methods=['GET'])
 def get_all():
     """Get all brands."""
     logging.debug("Request to get all brands")
