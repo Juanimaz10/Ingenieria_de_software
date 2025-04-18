@@ -3,3 +3,4 @@ from .base_repository import CreateAbstractRepository, ReadAbstractRepository, U
 from .brand_repository import BrandRepository
 from .notification_repository import NotificationRepository
 from .receipt_repository import ReceiptRepository
+from .category_repository import CategoryRepository

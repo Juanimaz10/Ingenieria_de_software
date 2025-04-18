@@ -12,9 +12,7 @@ class Article {
 class Category {
     - name: str
     - description: str
-
-
-
+}
 
 class Brand {
     - name: str
