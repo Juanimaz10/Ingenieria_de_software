@@ -1,7 +1,9 @@
 import unittest
-from stock import Stock
-from app.models import db
-from app.models import Article
+import os
+from app import create_app
+from app import db
+from app.models import Article, Brand, Category,Stock
+
 
 class TestStock(unittest.TestCase):
     def setUp(self):
