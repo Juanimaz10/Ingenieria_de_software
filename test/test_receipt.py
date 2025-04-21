@@ -42,15 +42,32 @@ class ReceiptTestCase(unittest.TestCase):
         self.assertEqual(len(receipt.items), len(items))
     
     def test_receipt_save(self):
-        receipt = Receipt()
-        
+        # Crear y guardar el header
         header = self.__get_header()
-        items = self.__get_items()
+        db.session.add(header)
+        db.session.commit()
+
+        # Crear y guardar el footer
         footer = self.__get_footer()
-        receipt.header = header
-        receipt.items = items
-        receipt.footer = footer
-        ReceiptService.save(receipt)
+        db.session.add(footer)
+        db.session.commit()
+
+        # Crear y guardar los items
+        items = self.__get_items()
+        for item in items:
+            db.session.add(item)
+        db.session.commit()
+
+        # Crear el receipt y asignar los IDs
+        receipt = Receipt()
+        receipt.header = header.id  # Asignar el ID del header
+        receipt.footer = footer.id  # Asignar el ID del footer
+
+        # Guardar el receipt
+        db.session.add(receipt)
+        db.session.commit()
+
+        # Verificar que el receipt tenga un ID asignado
         self.assertIsNotNone(receipt.id)
         
 

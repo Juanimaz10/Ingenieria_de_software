@@ -13,7 +13,7 @@ class ReceiptItem(db.Model):
     """
     __tablename__ = 'receipt_items'
     id: int = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
-    article_id: int = db.Column('id_article', db.Integer, db.ForeignKey('articles.id'), nullable=False)
+    id_article: int = db.Column('id_article', db.Integer, db.ForeignKey('articles.id'), nullable=False)
     article: Mapped["Article"] = db.relationship('Article', back_populates='receipt_items', lazy=True)
     quantity: float = db.Column('quantity', db.Float, nullable=False)
     batch: str = db.Column('batch', db.String[100], nullable=True)

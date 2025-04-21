@@ -1,5 +1,3 @@
-
-
 from app.models import Receipt
 from app.repositories import ReceiptRepository
 
@@ -17,6 +15,9 @@ class ReceiptService:
         # Assuming you have a database session object `db_session`
         ReceiptRepository.save(receipt)
         return receipt
+    
+    
+    
 
     
     
