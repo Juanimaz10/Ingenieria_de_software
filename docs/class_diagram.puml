@@ -50,7 +50,13 @@ class Brand {
 }
 
 class Stock {
-    - contents: ReceiptItem
+    - article: Article
+    - quantity: float
+    - batch: Batch
+    - entrytype: int // 1: in, 0: transfer, -1: out
+    - receiptnumber: int
+
+
 }
 
 class Notification {
