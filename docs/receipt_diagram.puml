@@ -1,0 +1,31 @@
+@startuml
+actor User
+boundary "Inventory UI" as UI
+control "Receipt Controller" as Controller
+boundary "Receipt Service" as ReceiptService
+boundary "Article Service" as ArticleService
+boundary "Receipt Type Service" as ReceiptTypeService
+boundary "Stock Service" as StockService
+database "Inventory Database" as DB
+
+User -> UI: Request stock information (type: receipt)
+UI -> Controller: GET /stock_info (type: receipt)
+Controller -> ReceiptService
+ReceiptService -> ArticleService: find_by_id
+ArticleService -> DB: return article data
+DB --> ArticleService
+ArticleService --> ReceiptService
+ReceiptService -> ReceiptTypeService: find_by_id
+ReceiptTypeService -> DB
+DB --> ReceiptTypeService
+ReceiptTypeService --> ReceiptService
+ReceiptService -> DB
+DB --> ReceiptService
+ReceiptService -> StockService
+DB --> StockService: Return stock data (type: receipt)
+StockService --> ReceiptService
+ReceiptService --> Controller
+Controller --> UI: Display stock information (type: receipt)
+UI --> User: Show stock details (type: receipt)
+
+@enduml
