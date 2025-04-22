@@ -24,26 +24,21 @@ class TestStock(unittest.TestCase):
         stock.article = Article()
 
     def test_save(self):
-        # Crear instancias relacionadas
         article = Article(name="Test Article", description="Description", minimun_stock=5, code_ean13="1234567890123")
         batch = Batch(code="Batch001", expiration_date="2025-12-31")
 
-        # Agregar las instancias relacionadas a la base de datos
         db.session.add(article)
         db.session.add(batch)
         db.session.commit()
 
-        # Crear y guardar el objeto Stock
         stock = Stock(article_id=article.id_article, batch_id=batch.id_batch, quantity=10)
         saved_stock = StockService.save(stock)
 
-        # Verificar que el objeto se guardó correctamente
-        self.assertIsNotNone(saved_stock.id)  # Verificar que se asignó un ID
+        self.assertIsNotNone(saved_stock.id)  
         self.assertEqual(saved_stock.quantity, 10)
         self.assertEqual(saved_stock.article.name, "Test Article")
         self.assertEqual(saved_stock.batch.code, "Batch001")
        
-    
 if __name__ == '__main__':
     unittest.main()
 
