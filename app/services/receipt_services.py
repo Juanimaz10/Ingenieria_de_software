@@ -1,5 +1,6 @@
 from app.models import Receipt
 from app.repositories import ReceiptRepository
+from app.dto import ReceiptDTO
 
 
 class ReceiptService:
@@ -16,7 +17,15 @@ class ReceiptService:
         ReceiptRepository.save(receipt)
         return receipt
     
-    
+    @staticmethod
+    def register_receipt(receipt_dto: ReceiptDTO) -> 'ReceiptDTO':
+        #TODO: Buscar el tipo de comprobante por id
+        #TODO: Buscar el articulo por id de items
+        #TODO: Crear un objeto receipt a partir de receipt_dto
+        #TODO: Guardar el objeto receipt en la base de datos
+        #TODO: Actualizar el stock de los articulos
+        #TODO: El guardar y el actualizar deben ser transaccionales
+        return receipt_dto
     
 
     
