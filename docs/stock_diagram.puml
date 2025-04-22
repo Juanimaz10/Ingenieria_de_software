@@ -1,17 +1,23 @@
 @startuml
 actor User
 boundary "Inventory UI" as UI
-control "Stock Controller" as Controller
-entity "Stock Model" as Model
+control "Stock Controller" as StockController
+control "Stock Service" as StockService
+entity "Stock Repository" as StockRepository
+entity "Stock Model" as Stock
 database "Inventory Database" as DB
 
-User -> UI: Request stock information (type: receipt)
-UI -> Controller: GET /stock_info (type: receipt)
-Controller -> Model: Fetch stock data (type: receipt)
-Model -> DB: Query stock table (type: receipt)
-DB --> Model: Return stock data (type: receipt)
-Model --> Controller: Stock data (type: receipt)
-Controller --> UI: Display stock information (type: receipt)
-UI --> User: Show stock details (type: receipt)
+User -> UI: Request stock information
+UI -> StockController: POST /stock_info
+StockController -> StockService: create stock model
+StockService -> StockRepository: Initialize stock model
+StockRepository -> Model: Create stock instance
+Model -> DB: Create stock table
+DB --> Model: Table created
+Model --> StockRepository: Stock instance with DB reference
+StockRepository --> StockService: Stock model created
+StockService --> StockController: Stock model initialized
+StockController --> UI: Stock model ready
+UI --> User: Notify stock setup complete
 
 @enduml
