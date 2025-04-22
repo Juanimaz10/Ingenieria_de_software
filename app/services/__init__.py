@@ -5,3 +5,4 @@ from .message import MessageBuilder
 from .receipt_services import ReceiptService
 from .category_services import CategoryService
 from .batch_services import BatchService
+from .stock_services import StockService

@@ -2,8 +2,9 @@ import unittest
 import os
 from app import create_app
 from app import db
-from app.models import Article, Brand, Category,Stock
-
+from app.models import Article, Brand, Category, Stock, Batch
+from app.services import StockService
+from app.repositories import StockRepository
 
 class TestStock(unittest.TestCase):
     def setUp(self):
@@ -18,12 +19,30 @@ class TestStock(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-
     def test_stock_creation(self):
         stock = Stock()
         stock.article = Article()
 
-   
+    def test_save(self):
+        # Crear instancias relacionadas
+        article = Article(name="Test Article", description="Description", minimun_stock=5, code_ean13="1234567890123")
+        batch = Batch(code="Batch001", expiration_date="2025-12-31")
+
+        # Agregar las instancias relacionadas a la base de datos
+        db.session.add(article)
+        db.session.add(batch)
+        db.session.commit()
+
+        # Crear y guardar el objeto Stock
+        stock = Stock(article_id=article.id_article, batch_id=batch.id_batch, quantity=10)
+        saved_stock = StockService.save(stock)
+
+        # Verificar que el objeto se guardó correctamente
+        self.assertIsNotNone(saved_stock.id)  # Verificar que se asignó un ID
+        self.assertEqual(saved_stock.quantity, 10)
+        self.assertEqual(saved_stock.article.name, "Test Article")
+        self.assertEqual(saved_stock.batch.code, "Batch001")
+       
     
 if __name__ == '__main__':
     unittest.main()
