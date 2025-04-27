@@ -9,3 +9,4 @@ class ReceiptDTO:
     items: list['ReceiptItemDTO'] 
     Footer: ReceiptFooter
     id_receipt_type: int
+    
