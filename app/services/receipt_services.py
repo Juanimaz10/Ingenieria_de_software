@@ -70,21 +70,7 @@ class ReceiptService:
             db.session.rollback()
             raise ValueError(f"Error registering receipt: {str(e)}")
 
-    def setUp(self):
-      
-        self.app = create_app()
-        self.app_context = self.app.app_context()
-        self.app_context.push()
-        db.create_all()
-
- 
-        self.receipt_type = ReceiptType(id=1, name="Factura", description="Factura de venta", type_entry=1)
-        db.session.add(self.receipt_type)
-        db.session.commit()
-
-        
-        assert ReceiptType.query.get(1) is not None, "El tipo de comprobante no se guardó correctamente"
-
+    
         #TODO: Buscar el tipo de comprobante por id
         #TODO: Buscar el articulo por id de items
         #TODO: Crear un objeto receipt a partir de receipt_dto
