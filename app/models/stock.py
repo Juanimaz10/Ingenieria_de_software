@@ -10,5 +10,5 @@ class Stock(db.Model):
     batch_id: int = db.Column('batch_id', db.Integer, db.ForeignKey('batches.id'), nullable=False)
     article = db.relationship('Article', back_populates='receipt_items', lazy=True)
     batch = db.relationship('Batch', lazy=True)
-
+    receipt = db.relationship('Receipt', lazy=True) 
    

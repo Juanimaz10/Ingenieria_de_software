@@ -4,7 +4,7 @@ from app.repositories import ReceiptRepository, ArticleRepository, StockReposito
 from app.dto import ReceiptDTO, ReceiptItemDTO  
 from app.models import ReceiptItem, Stock  
 from app.repositories.receipt_type_repository import ReceiptTypeRepository  
-
+from app.services import ReceiptTypesService, ArticleService, StockService, BatchService
 class ReceiptService:
    
 
@@ -17,51 +17,41 @@ class ReceiptService:
     @staticmethod
     def register_receipt(receipt_dto: ReceiptDTO) -> 'ReceiptDTO':
   
-        
         try:
+            db.session.begin()
+            if not receipt_dto.header:
+                raise ValueError("ReceiptDTO.header must be a valid.")
+            if not receipt_dto.Footer:
+                raise ValueError("ReceiptDTO.Footer must be a valid.")
             
-            if not receipt_dto.header or not receipt_dto.header.id:
-                raise ValueError("ReceiptDTO.header must be a valid and saved ReceiptHeader.")
-            if not receipt_dto.Footer or not receipt_dto.Footer.id:
-                raise ValueError("ReceiptDTO.Footer must be a valid and saved ReceiptFooter.")
-
-          
-            receipt_type = ReceiptTypeRepository.get_by_id(receipt_dto.id_receipt_type)
-            if not receipt_type:
-                raise ValueError(f"Receipt type with ID {receipt_dto.id_receipt_type} not found.")
-
+            #TODO: Cambiar metodos find por un metodo que devuelva verdadero o falso si existe el objeto.
+            receipt_type = ReceiptTypesService.find(receipt_dto.id_receipt_type)
            
             receipt = Receipt(
-                header=receipt_dto.header.id,
-                footer=receipt_dto.Footer.id,
-                receipt_type=receipt_dto.id_receipt_type
+                id_header=receipt_dto.header.id,
+                id_footer=receipt_dto.footer.id,
+                id_receipt_type=receipt_dto.id_receipt_type
             )
+
             ReceiptRepository.save(receipt)
 
             for item_dto in receipt_dto.items:
             
-                article = ArticleRepository.find(item_dto.id_article)
-                if not article:
-                    raise ValueError(f"Article with ID {item_dto.id_article} not found.")
-
-               
+                article = ArticleService.find(item_dto.id_article)
+                batch = BatchService.find(item_dto.id_batch)
                 receipt_item = ReceiptItem(
-                    id_article=item_dto.id_article,
+                    article=article,
                     quantity=item_dto.quantity,
-                    batch_id=item_dto.id_batch,
-                    receipt_id=receipt.id
+                    batch=batch,
+                    receipt=receipt
                 )
                 db.session.add(receipt_item)
+                stock = Stock(article=article,
+                    quantity=item_dto.quantity,
+                    batch=batch,
+                    receipt=receipt)
+                StockService.register(stock)
 
-               
-                stock = StockRepository.find_by(article_id=item_dto.id_article, batch_id=item_dto.id_batch)
-                if not stock:
-                    stock = Stock(article_id=item_dto.id_article, batch_id=item_dto.id_batch, quantity=0)
-                    db.session.add(stock)
-                stock.quantity += item_dto.quantity
-                db.session.merge(stock)
-
-        
             db.session.commit()
 
             return receipt_dto
@@ -70,7 +60,7 @@ class ReceiptService:
             db.session.rollback()
             raise ValueError(f"Error registering receipt: {str(e)}")
 
-    
+
         #TODO: Buscar el tipo de comprobante por id
         #TODO: Buscar el articulo por id de items
         #TODO: Crear un objeto receipt a partir de receipt_dto
