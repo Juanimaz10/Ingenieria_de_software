@@ -69,11 +69,7 @@ class ReceiptTestCase(unittest.TestCase):
 
         # Verificar que el receipt tenga un ID asignado
         self.assertIsNotNone(receipt.id)
-        
-
-        
-
-
+    
 
     def __get_header(self) -> ReceiptHeader:
         header = ReceiptHeader() 

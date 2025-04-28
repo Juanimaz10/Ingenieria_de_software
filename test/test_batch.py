@@ -6,8 +6,6 @@ from app.models import Batch
 from app.services import BatchService
 from datetime import date
 
-
-
 class BatchTestCase(unittest.TestCase):
 
     def setUp(self):

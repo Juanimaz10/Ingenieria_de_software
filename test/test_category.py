@@ -4,7 +4,6 @@ from app import create_app
 from app import db
 from app.services import CategoryService
 from utils import new_category
-category = new_category(name='Category', description='Una Categoria')
 
 class CategoryTestCase(unittest.TestCase):
 
@@ -21,23 +20,27 @@ class CategoryTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_category(self):
+        category = new_category(name='Category', description='Una Categoria')
         self.assertIsNotNone(category)
         self.assertEqual(category.name, 'Category')
         self.assertEqual(category.description, 'Una Categoria')
 
     def test_save(self):
+        category = new_category(name='Category', description='Una Categoria')
         category_save = CategoryService.save(category)
         self.check_data(category_save)
         category_delete = CategoryService.delete(category)
         self.assertIsNone(category_delete)
 
     def test_find(self):
+        category = new_category(name='Category', description='Una Categoria')
         category_save = CategoryService.save(category)
         self.check_data(category_save)
         category_find = CategoryService.find(1)
         self.check_data(category_find)
 
     def test_find_all(self):
+        category = new_category(name='Category', description='Una Categoria')
         category2 = new_category(name='Category 1', description='Una Categoria 1')
         category_save = CategoryService.save(category)
         category2_save = CategoryService.save(category2)
@@ -48,6 +51,7 @@ class CategoryTestCase(unittest.TestCase):
         self.assertGreater(len(categories), 1)
 
     def test_find_by(self):
+        category = new_category(name='Category', description='Una Categoria')
         category_save = CategoryService.save(category)
         self.check_data(category_save)
         category_find = CategoryService.find_by(description = 'Una Categoria')
@@ -55,6 +59,7 @@ class CategoryTestCase(unittest.TestCase):
         self.assertGreater(len(category_find), 0)
 
     def test_update(self):
+        category = new_category(name='Category', description='Una Categoria')
         category_save = CategoryService.save(category)
         category_save.description = 'Una Categoria 2'
         category_save_update = CategoryService.update(category_save)
