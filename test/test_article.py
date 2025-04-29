@@ -4,8 +4,6 @@ from app import create_app
 from app import db
 from app.services import ArticleService
 from utils import new_article, new_brand, new_category
-brand = new_brand(name='Marca', description='Una Marca')
-category = new_category(name='Category', description='Una Categoria')
 
 class ArticleTestCase(unittest.TestCase):
     """
@@ -49,7 +47,7 @@ class ArticleTestCase(unittest.TestCase):
         article = new_article(name='Tupu', description='description', category=category, brand=brand, minimun_stock=1, code_ean13='abc')
         article_save = ArticleService.save(article)
         self.check_data(article_save)
-        article_find = ArticleService.find(article_save.id_article)
+        article_find = ArticleService.find(article_save.id)
         self.check_data(article_find)
 
     def test_find_all(self):

@@ -3,7 +3,6 @@ from app import create_app
 import os
 from app import db
 from app.services import StockService
-from utils import new_stock, new_article, new_batch, new_receipt
 
 
 class StockTestCase(unittest.TestCase):
