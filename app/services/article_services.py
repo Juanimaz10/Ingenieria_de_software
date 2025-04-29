@@ -16,7 +16,10 @@ class ArticleService():
     
     @staticmethod
     def find(id: int) -> 'Article':
-        return ArticleRepository.find(id)
+        article_service = ArticleRepository.find(id)
+        if not article_service:
+                    raise ValueError(f"Article with ID {id} not found.")
+        return article_service
     
     @staticmethod
     def find_all() -> List['Article']:
