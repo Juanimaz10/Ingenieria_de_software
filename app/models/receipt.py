@@ -13,4 +13,6 @@ class Receipt(db.Model):
     id_footer: int = db.Column('id_receipt_footer', db.Integer, db.ForeignKey('receipt_footers.id'), nullable=False)
     items = db.relationship('ReceiptItem', back_populates='receipt', lazy=True)
     id_receipt_type: int = db.Column('id_receipt_type', db.Integer, db.ForeignKey('receipt_types.id'), nullable=False)
+    receipt_type = db.relationship('ReceiptType', lazy=True)
+    
 

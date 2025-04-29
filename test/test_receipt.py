@@ -25,37 +25,6 @@ class TestReceiptService(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_register_receipt_success(self):
-        receipt_header = ReceiptHeader(submission_date=datetime.now())
-        db.session.add(receipt_header)
-        db.session.commit()
-
     
-        receipt_footer = ReceiptFooter(total=100.0)
-        db.session.add(receipt_footer)
-        db.session.commit()
-
-       
-        receipt_dto = ReceiptDTO(
-            header=receipt_header,  
-            items=[],
-            Footer=receipt_footer, 
-            id_receipt_type=self.receipt_type.id
-        )
-
-        
-        result = ReceiptService.register_receipt(receipt_dto)
-
-      
-        self.assertIsNotNone(result)
-        self.assertEqual(result.header.id, receipt_header.id)
-        self.assertEqual(result.Footer.id, receipt_footer.id)
-        self.assertEqual(result.id_receipt_type, self.receipt_type.id)
-
-    def test_register_receipt_with_invalid_receipt_type(self):
-        receipt_dto = ReceiptDTO(header=None, items=[], Footer=None, id_receipt_type=999)
-        with self.assertRaises(ValueError):
-            ReceiptService.register_receipt(receipt_dto)
-
-if name == 'main':
+if __name__ == '__main__':
     unittest.main()

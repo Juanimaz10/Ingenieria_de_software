@@ -27,7 +27,9 @@ class ArticleTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_article(self):
-        article = new_article(name='Tupu', description='description', category=category.id, brand=brand.id, minimun_stock=1, code_ean13='abc')
+        category = new_category(name='Category', description='Una Categoria')
+        brand = new_brand(name='Marca', description='Una Marca')
+        article = new_article(name='Tupu', description='description', category=category, brand=brand, minimun_stock=1, code_ean13='abc')
         self.assertIsNotNone(article)
         self.assertEqual(article.name, 'Tupu')
         self.assertEqual(article.description, 'description')
@@ -35,20 +37,26 @@ class ArticleTestCase(unittest.TestCase):
         self.assertEqual(article.code_ean13, 'abc')
 
     def test_save(self):
-        article = new_article(name='Tupu', description='description', category=category.id, brand=brand.id, minimun_stock=1, code_ean13='abc')
+        category = new_category(name='Category', description='Una Categoria')
+        brand = new_brand(name='Marca', description='Una Marca')
+        article = new_article(name='Tupu', description='description', category=category, brand=brand, minimun_stock=1, code_ean13='abc')
         article_save = ArticleService.save(article)
         self.check_data(article_save)
 
     def test_find(self):
-        article = new_article(name='Tupu', description='description', category=category.id, brand=brand.id, minimun_stock=1, code_ean13='abc')
+        category = new_category(name='Category', description='Una Categoria')
+        brand = new_brand(name='Marca', description='Una Marca')
+        article = new_article(name='Tupu', description='description', category=category, brand=brand, minimun_stock=1, code_ean13='abc')
         article_save = ArticleService.save(article)
         self.check_data(article_save)
         article_find = ArticleService.find(article_save.id_article)
         self.check_data(article_find)
 
     def test_find_all(self):
-        article = new_article(name='Tupu', description='description', category=category.id, brand=brand.id, minimun_stock=1, code_ean13='abc')
-        article2 = new_article(name='Tupu2', description='description2', category=category.id, brand=brand.id, minimun_stock=1, code_ean13='abc')
+        category = new_category(name='Category', description='Una Categoria')
+        brand = new_brand(name='Marca', description='Una Marca')
+        article = new_article(name='Tupu', description='description', category=category, brand=brand, minimun_stock=1, code_ean13='abc')
+        article2 = new_article(name='Tupu2', description='description2', category=category, brand=brand, minimun_stock=1, code_ean13='abc')
         article_save = ArticleService.save(article)
         article2_save = ArticleService.save(article2)
         self.check_data(article_save)
@@ -58,7 +66,9 @@ class ArticleTestCase(unittest.TestCase):
         self.assertGreater(len(articles), 1)
 
     def test_find_by(self):
-        article = new_article(name='Tupu', description='description', category=category.id, brand=brand.id, minimun_stock=1, code_ean13='abc')
+        category = new_category(name='Category', description='Una Categoria')
+        brand = new_brand(name='Marca', description='Una Marca')
+        article = new_article(name='Tupu', description='description', category=category, brand=brand, minimun_stock=1, code_ean13='abc')
         article_save = ArticleService.save(article)
         self.check_data(article_save)
         article_save = ArticleService.find_by(description = 'description')
@@ -66,7 +76,9 @@ class ArticleTestCase(unittest.TestCase):
         self.assertGreater(len(article_save), 0)
 
     def test_update(self):
-        article = new_article(name='Tupu', description='description', category=category.id, brand=brand.id, minimun_stock=1, code_ean13='abc')
+        category = new_category(name='Category', description='Una Categoria')
+        brand = new_brand(name='Marca', description='Una Marca')
+        article = new_article(name='Tupu', description='description', category=category, brand=brand, minimun_stock=1, code_ean13='abc')
         article_save = ArticleService.save(article)
         article_save.description = 'new description'
         article_save_update = ArticleService.update(article_save)
@@ -76,8 +88,8 @@ class ArticleTestCase(unittest.TestCase):
 
     def check_data(self, article_save):
         self.assertIsNotNone(article_save)
-        self.assertIsNotNone(article_save.id_article)
-        self.assertGreater(article_save.id_article, 0)
+        self.assertIsNotNone(article_save.id)
+        self.assertGreater(article_save.id, 0)
 
 
 if __name__ == '__main__':
