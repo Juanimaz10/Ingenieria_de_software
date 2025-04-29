@@ -27,9 +27,3 @@ class NotificationRepository(CreateAbstractRepository, ReadAbstractRepository, D
     @staticmethod
     def find_by(**kwargs) -> List['Notification']:
         return Notification.query.filter_by(**kwargs).all()
-    
-    @staticmethod
-    def update(notification: Notification) -> None:
-        db.session.merge(notification)
-        db.session.commit()
-        

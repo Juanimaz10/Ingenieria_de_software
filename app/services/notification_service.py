@@ -28,7 +28,3 @@ class NotificationService:
     @staticmethod
     def find_by(**kwargs) -> List[Notification]:
         return NotificationRepository.find_by(**kwargs)
-    
-    @staticmethod
-    def update(notification: 'Notification') -> 'Notification':
-        NotificationRepository.update(notification)
