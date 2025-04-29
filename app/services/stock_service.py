@@ -6,6 +6,10 @@ class StockService():
     @staticmethod
     def save(stock: Stock) -> Stock:
         return stock_repository.save(stock)
+    
+    @staticmethod
+    def register(stock: Stock) -> Stock:
+        return stock_repository.save(stock)
 
     @staticmethod
     def find(id_stock: int) -> Stock:

@@ -47,7 +47,7 @@ class ReceiptService:
                 )
                 db.session.add(receipt_item)
                 stock = Stock(article=article,
-                    quantity=item_dto.quantity,
+                    quantity=item_dto.quantity * receipt_type.type_entry,
                     batch=batch,
                     receipt=receipt)
                 StockService.register(stock)
