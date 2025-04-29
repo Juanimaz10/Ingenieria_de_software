@@ -7,12 +7,14 @@ class NotificationService:
         self.repository = repository or NotificationRepository()
     
     @staticmethod
-    def save(notification: Notification) -> Notification:
-        NotificationRepository.save(notification)
+    def create(notification: Notification) -> Notification:
+        return NotificationRepository.save(notification)
     
     @staticmethod
-    def delete(notification: Notification) -> None:
+    def delete(notification_id: int) -> None:
+        notification = NotificationService.find(notification_id)
         NotificationRepository.delete(notification)
+
 
     @staticmethod
     def find(id: int) -> Optional[Notification]:
@@ -28,3 +30,4 @@ class NotificationService:
     @staticmethod
     def find_by(**kwargs) -> List[Notification]:
         return NotificationRepository.find_by(**kwargs)
+
