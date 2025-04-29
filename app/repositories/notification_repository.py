@@ -5,20 +5,31 @@ from app.repositories import CreateAbstractRepository, ReadAbstractRepository, D
 
 class NotificationRepository(CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository):
     
-    def save(self, notification: Notification) -> Notification:
+    @staticmethod
+    def save(notification: Notification) -> Notification:
         db.session.add(notification)
         db.session.commit()
         return notification
     
-    def delete(self, notification: Notification) -> None:
+    @staticmethod
+    def delete(notification: Notification) -> None:
         db.session.delete(notification)
         db.session.commit()
     
-    def find(self, id: int) -> 'Notification':
+    @staticmethod
+    def find(id: int) -> 'Notification':
         return Notification.query.get(id)
 
-    def find_all(self) -> List['Notification']:
+    @staticmethod
+    def find_all() -> List['Notification']:
         return Notification.query.all()
     
-    def find_by(self, **kwargs) -> List['Notification']:
+    @staticmethod
+    def find_by(**kwargs) -> List['Notification']:
         return Notification.query.filter_by(**kwargs).all()
+    
+    @staticmethod
+    def update(notification: Notification) -> None:
+        db.session.merge(notification)
+        db.session.commit()
+        
