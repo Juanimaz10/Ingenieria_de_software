@@ -1,10 +1,10 @@
-from app import create_app, db  
-from app.models import Receipt, ReceiptType  
-from app.repositories import ReceiptRepository, ArticleRepository, StockRepository  
-from app.dto import ReceiptDTO, ReceiptItemDTO  
-from app.models import ReceiptItem, Stock  
-from app.repositories.receipt_type_repository import ReceiptTypeRepository  
+from app import db  
+from app.models import Receipt
+from app.repositories import ReceiptRepository
+from app.dto import ReceiptDTO
+from app.models import ReceiptItem, Stock   
 from app.services import ReceiptTypesService, ArticleService, StockService, BatchService
+
 class ReceiptService:
    
 
@@ -63,6 +63,7 @@ class ReceiptService:
 
         #TODO: Buscar el tipo de comprobante por id
         #TODO: Buscar el articulo por id de items
+        #TODO: Verificar si el tipo de comprobante es salida, el stock de articulo debe ser superior a 0.
         #TODO: Crear un objeto receipt a partir de receipt_dto
         #TODO: Guardar el objeto receipt en la base de datos
         #TODO: Actualizar el stock de los articulos

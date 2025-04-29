@@ -1,11 +1,10 @@
 import unittest
-from flask import current_app
 from app import create_app
 import os
 from app import db
 from app.services import StockService
-from app.models import Stock, Article, Batch, Receipt
 from utils import new_stock, new_article, new_batch, new_receipt
+
 
 class StockTestCase(unittest.TestCase):
 
@@ -22,7 +21,11 @@ class StockTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_stock(self):
-        stock = new_stock(quantity=10, batch_id=1, article_id=1)
+        article = new_article(name="Test Article", code="TEST001", price=10.0, stock=10)
+        quantity = 10
+        batch = new_batch(code="BATCH001", expiration_date="2023-12-31")
+        receipt = new_receipt(id_header=1, id_footer=1, id_receipt_type=1)
+        stock = new_stock(article=article, quantity=quantity, batch=batch, receipt=receipt)
         self.assertIsNotNone(stock)
         self.assertEqual(stock.quantity, 10)
         self.assertEqual(stock.batch_id, 1)
@@ -83,4 +86,7 @@ class StockTestCase(unittest.TestCase):
         self.assertEqual(stock_save.id, 1)
         stock_find = StockService.find(stock_save.id)
         self.assertIsNotNone(stock_find)
+
+if __name__ == '__main__':
+    unittest.main()
        
