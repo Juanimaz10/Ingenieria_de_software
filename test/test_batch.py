@@ -71,7 +71,7 @@ class BatchTestCase(unittest.TestCase):
 
     def __new_batch(self):
         batch = Batch()
-        batch.id_batch = 1
+        batch.id = 1
         batch.code = "codigo"
         batch.expiration_date = date(2025, 4, 20)
         return batch
