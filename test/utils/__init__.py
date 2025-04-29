@@ -2,3 +2,4 @@ from .article_utils import new_article
 from .category_utils import new_category
 from .brand_utils import new_brand
 from .stock_utils import new_stock
+from .batch_utils import new_batch
