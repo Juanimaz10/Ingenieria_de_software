@@ -15,7 +15,6 @@ class NotificationService:
         notification = NotificationService.find(notification_id)
         NotificationRepository.delete(notification)
 
-
     @staticmethod
     def find(id: int) -> Optional[Notification]:
         notification_service = NotificationRepository.find(id)
