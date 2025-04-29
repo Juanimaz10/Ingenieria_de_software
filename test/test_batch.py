@@ -68,15 +68,7 @@ class BatchTestCase(unittest.TestCase):
         self.assertEqual(batch_save_update.code, 'new code')
         self.assertEqual(batch_save.code, batch_save_update.code)
         self.assertEqual(batch.code, batch_save_update.code)
-
-    def __new_batch(self):
-        batch = Batch()
-        batch.id = 1
-        batch.code = "codigo"
-        batch.expiration_date = date(2025, 4, 20)
-        return batch
     
-
     def check_data(self, batch_save):
         self.assertIsNotNone(batch_save)
         self.assertIsNotNone(batch_save.id_batch)
