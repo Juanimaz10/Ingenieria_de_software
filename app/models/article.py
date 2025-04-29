@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from app import db
 
 
-@dataclass(init=True, eq=True)
+@dataclass(init=True, eq=False)
 class Article(db.Model):
     """
     Article con sus atributos
@@ -15,10 +15,8 @@ class Article(db.Model):
     brand_id: int = db.Column('brand_id', db.Integer, db.ForeignKey('brands.id'))
     minimun_stock: int = db.Column('minimun_stock', db.Float, nullable=False)
     code_ean13: str = db.Column('code_ean13', db.String[150], nullable=False)
-
     brand = db.relationship('Brand')
     category = db.relationship('Category')
-    receipt_items = db.relationship("ReceiptItem", back_populates="article")
     
     def __eq__(self, article:object) -> bool:
         return self.name == article.name and self.code_ean13 == article.code_ean13

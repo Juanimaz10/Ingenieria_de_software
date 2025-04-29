@@ -14,5 +14,5 @@ class ReceiptItem(db.Model):
     id_batch: int = db.Column('id_batch', db.Integer, db.ForeignKey('batches.id'), nullable=False)
     id_receipt: int = db.Column('id_receipt', db.Integer, db.ForeignKey('receipts.id'), nullable=False)
     receipt = db.relationship('Receipt', back_populates='items', lazy=True) 
-    article = db.relationship('Article', back_populates='receipt_items', lazy=True)
+    article = db.relationship('Article',  lazy=True)
     batch = db.relationship('Batch', lazy=True)
