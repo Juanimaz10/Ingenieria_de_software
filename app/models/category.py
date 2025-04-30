@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from app import db
 
-
 @dataclass(init=True, eq=True)
 class Category(db.Model):
     __tablename__ = "categories"

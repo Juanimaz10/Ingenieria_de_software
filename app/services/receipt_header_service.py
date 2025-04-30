@@ -2,7 +2,7 @@ from app.models import ReceiptHeader
 from app.repositories import ReceiptHeaderRepository
 
 
-class ReceiptHeaderServices:
+class ReceiptHeaderService:
     @staticmethod
     def get_all_receipt_headers(ReceiptHeader: ReceiptHeader) -> list[ReceiptHeader]:
         """Retrieve all receipt headers."""

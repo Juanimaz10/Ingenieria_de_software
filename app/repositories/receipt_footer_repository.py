@@ -1,5 +1,5 @@
 from app.models.receipt import Receipt
-from app.models.receipt_types import ReceiptFooter
+from app.models import ReceiptFooter
 from app.repositories import CreateAbstractRepository
 from app import db
 
