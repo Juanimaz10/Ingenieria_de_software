@@ -141,3 +141,4 @@ pyvenv.cfg
 # Docker database data
 docker/db/data/
 
+activate_venv.ps1

@@ -1,5 +1,4 @@
-from app.models.receipt import Receipt
-from app.models.receipt_types import ReceiptItem
+from app.models import ReceiptItem
 from app.repositories import CreateAbstractRepository
 from app import db
 

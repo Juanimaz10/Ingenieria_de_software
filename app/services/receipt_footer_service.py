@@ -2,7 +2,7 @@ from app.models import ReceiptFooter
 from app.repositories import ReceiptFooterRepository
 
 
-class ReceiptFooterServices:
+class ReceiptFooterService:
     """
     Service class for handling receipt footer-related operations.
     """

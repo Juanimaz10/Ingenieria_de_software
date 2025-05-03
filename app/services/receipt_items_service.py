@@ -1,4 +1,4 @@
-from app.models import ReceiptItems
+from app.models import ReceiptItem
 from app.repositories import ReceiptItemsRepository
 from app.models import ReceiptType
 

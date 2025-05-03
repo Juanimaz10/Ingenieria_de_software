@@ -2,9 +2,6 @@ from dataclasses import dataclass
 from datetime import datetime
 from app import db
 
-
-
-
 @dataclass(init=True, eq=True)
 class ReceiptHeader(db.Model):
     """

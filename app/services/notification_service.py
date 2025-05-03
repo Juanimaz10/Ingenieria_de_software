@@ -6,17 +6,27 @@ class NotificationService:
     def __init__(self, repository: Optional[NotificationRepository] = None):
         self.repository = repository or NotificationRepository()
     
-    def save(self, notification: Notification) -> Notification:
-        return self.repository.save(notification)
+    @staticmethod
+    def create(notification: Notification) -> Notification:
+        return NotificationRepository.save(notification)
     
-    def delete(self, notification: Notification) -> None:
-        self.repository.delete(notification)
+    @staticmethod
+    def delete(notification_id: int) -> None:
+        notification = NotificationService.find(notification_id)
+        NotificationRepository.delete(notification)
+
+    @staticmethod
+    def find(id: int) -> Optional[Notification]:
+        notification_service = NotificationRepository.find(id)
+        if not notification_service:
+            raise ValueError(f"Notificacion with ID {id} not found.")
+        return notification_service
     
-    def find(self, id: int) -> Optional[Notification]:
-        return self.repository.find(id)
+    @staticmethod
+    def find_all() -> List[Notification]:
+        return NotificationRepository.find_all()
     
-    def find_all(self) -> List[Notification]:
-        return self.repository.find_all()
-    
-    def find_by(self, **kwargs) -> List[Notification]:
-        return self.repository.find_by(**kwargs)
+    @staticmethod
+    def find_by(**kwargs) -> List[Notification]:
+        return NotificationRepository.find_by(**kwargs)
+
