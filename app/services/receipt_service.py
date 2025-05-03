@@ -25,7 +25,7 @@ class ReceiptService:
                 raise ValueError("ReceiptDTO.Footer must be a valid.")
             
             #TODO: Cambiar metodos find por un metodo que devuelva verdadero o falso si existe el objeto.
-            receipt_type = ReceiptTypesService.find(receipt_dto.id_receipt_type)
+            receipt_type = ReceiptTypesService.exists(receipt_dto.id_receipt_type)
            
             receipt = Receipt(
                 id_header=receipt_dto.header.id,

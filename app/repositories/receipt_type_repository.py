@@ -30,3 +30,7 @@ class ReceiptTypeRepository(CreateAbstractRepository,ReadAbstractRepository,Dele
     def find_by(**kwargs) -> List['ReceiptType']:
         return ReceiptType.query.filter_by(**kwargs).all()
     
+    @staticmethod
+    def exists(id: int) -> bool:
+        return ReceiptType.query.get(id) is not None
+    
