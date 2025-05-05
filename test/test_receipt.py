@@ -1,21 +1,9 @@
 import os
 import unittest
 from app import db, create_app
-from app.models import article, batch
-from app.models.receipt import Receipt
-from app.models.receipt_footers import ReceiptFooter
-from app.models.receipt_header import ReceiptHeader
-from app.models.receipt_items import ReceiptItem
-from app.models.receipt_types import ReceiptType
-from app.services.article_service import ArticleService
-from app.services.batch_service import BatchService
-from app.services.brand_service import BrandService
-from app.services.category_service import CategoryService
-from app.services.receipt_footer_service import ReceiptFooterService
-from app.services.receipt_header_service import ReceiptHeaderService
-from app.services.receipt_type_service import ReceiptTypesService
+from app.models import Receipt
+from app.services import ArticleService, BatchService, BrandService, CategoryService, ReceiptFooterService, ReceiptHeaderService, ReceiptTypesService, ReceiptService
 from utils import new_receipt, new_receipt_type, new_brand, new_article, new_batch, new_receipt_items, new_category, new_receipt_footer, new_receipt_header
-from app.services import ReceiptService
 from datetime import datetime
 
 class TestReceiptService(unittest.TestCase):

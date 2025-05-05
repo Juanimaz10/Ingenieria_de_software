@@ -1,14 +1,11 @@
 from app import db  
 from app.models import Receipt
-from app.repositories import ReceiptRepository
+from app.repositories import ReceiptRepository, ReceiptTypeRepository
 from app.dto import ReceiptDTO
 from app.models import ReceiptItem, Stock   
-from app.services import ReceiptTypesService
-
 
 class ReceiptService:
    
-
     @staticmethod
     def save(receipt: Receipt) -> 'Receipt':
 
@@ -26,7 +23,7 @@ class ReceiptService:
                 raise ValueError("ReceiptDTO.Footer must be a valid.")
             
             #TODO: Cambiar metodos find por un metodo que devuelva verdadero o falso si existe el objeto.
-            receipt_type = ReceiptTypesService.exists(receipt_dto.id_receipt_type)          
+            receipt_type = ReceiptTypeRepository.exists(receipt_dto.id_receipt_type)          
             receipt = Receipt(
                 id_header=receipt_dto.header.id,
                 id_footer=receipt_dto.footer.id,
