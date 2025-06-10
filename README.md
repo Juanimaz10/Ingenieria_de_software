@@ -11,8 +11,7 @@
 
 El proyecto de **Gestión de Stock**  incluye:
 
-- Una arquitectura **Monolítica** 
-    - https://github.com/Juanimaz10/Ingenieria_de_software
+- Una arquitectura [Monolítica](https://github.com/Juanimaz10/Ingenieria_de_software)
 - Metodologías ágiles utilizando Scrum a través de **GitHub Projects**
 - Contenedor para servicios y para el proyecto con Docker (carpeta docker)
 
@@ -56,13 +55,13 @@ El proyecto se desarrolla siguiendo la metodología **Scrum** con las siguientes
 - [ ] Uso de **Git** con flujos de trabajo **Trunk-based Development**
 - [ ] **Versionado** adecuado del código
 
- -🎯Una arquitectura **Microservicio** 
-    - receipt_microservice: https://github.com/AugustoCastroo/receipt_microservice
-    - MicroserviceNotification: https://github.com/Almonacid98/MicroserviceNotification
-    - Article-Micro-Service: https://github.com/Pachi69/Article-Micro-Service
-    - stock-microservice: https://github.com/Facumerino03/stock-microservice
-- Metodologías ágiles utilizando Scrum a través de **GitHub Projects**
-- Contenedor para servicios y para el proyecto con Docker (carpeta docker)
+ - [ ] 🎯Una arquitectura **Microservicio** 
+    - [ ] [Receipt Microservice](https://github.com/AugustoCastroo/receipt_microservice)
+    - [ ] [Notification Microservice](https://github.com/Almonacid98/MicroserviceNotification)
+    - [ ] [Article Microservice](https://github.com/Pachi69/Article-Micro-Service)
+    - [ ] [Stock Microservice](https://github.com/Facumerino03/stock-microservice)
+- [ ] Metodologías ágiles utilizando Scrum a través de **GitHub Projects**
+- [ ] Contenedor para servicios y para el proyecto con Docker (carpeta docker)
 
 ## 🏗️ Estructura del Proyecto
 
