@@ -118,4 +118,5 @@ Gestión de Stock/
 - **Facundo Merino**
 - **Javier Maximiliano Sepulveda**
 - **Dolores Herrera Garcia da ROSA**
+- **Ramiro Giandinoto**
 ---
