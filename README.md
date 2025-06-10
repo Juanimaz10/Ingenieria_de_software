@@ -105,6 +105,8 @@ Gestión de Stock/
 - **Jacobson, I., Booch, G., Rumbaugh, J.** - "El Proceso Unificado de Desarrollo de Software" - Pearson
 - **Blé Jurado, C.** - "Diseño Ágil con TDD" - Creative Commons
 - **Iradier, Á., Martínez, I.** - "Docker para DevOps de noob a experto" - Creative Commons
+- https://martinfowler.com/bliki/MonolithFirst.html
+- https://martinfowler.com/articles/break-monolith-into-microservices.html
 
 ## 👥 Equipo de Desarrollo
 
@@ -114,6 +116,6 @@ Gestión de Stock/
 - **José Ruti**
 - **Augusto Castro**
 - **Facundo Merino**
-- **Javier Maximiliano**
+- **Javier Maximiliano Sepulveda**
 - **Dolores Herrera Garcia da ROSA**
 ---
